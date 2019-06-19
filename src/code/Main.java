@@ -1,3 +1,7 @@
+package code;
+
+import model.ListNode;
+
 import java.util.*;
 
 public class Main {
