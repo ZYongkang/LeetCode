@@ -9,17 +9,32 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         ListNode head = new ListNode(0);
-        initListNode(head, 1, 9);
+        int size = 2;
+        main.createListNode(head, head.getNum(), size);
         System.out.println("反转前：");
         System.out.println(head);
-        ListNode listNode = main.reverseList(head);
-        System.out.println("反转后：");
-        if (listNode != null) {
-            System.out.println(listNode);
+//        ListNode listNode = main.reverseList(head);
+        ListNode listNode2 = main.reverseBetween(head, 2, 5, size);
+//        System.out.println("1反转后：");
+//        if (listNode != null) {
+//            System.out.println(listNode);
+//        }
+        System.out.println("2反转后：");
+        if (listNode2 != null) {
+            System.out.println(listNode2);
         }
+
     }
 
-    private static void initListNode(ListNode head, int num , int size) {
+    public void createListNode(ListNode head, int num , int size) {
+        if (size < 0) {
+            return;
+        }
+        size = size - 2;
+        initListNode(head, ++num, size);
+    }
+
+    public void initListNode(ListNode head, int num , int size) {
         if (size < 0) {
             return;
         }
@@ -95,5 +110,34 @@ public class Main {
             curr = temp;
         }
         return prev;
+    }
+
+    public ListNode reverseBetween(ListNode head, int m, int n, int size) {
+        if (m < 1 || m >= n || n > size) {
+            return head;
+        }
+        int changeLen = n - m + 1;
+        ListNode preNode = null;
+        ListNode res = head;
+        while (head != null && --m > 0) {
+            preNode = head;
+            head = head.getNext();
+        }
+        ListNode modifyListNode = head;
+        ListNode newHeadNode = null;
+        while (head != null && changeLen > 0) {
+            ListNode temp = head.getNext();
+            head.setNext(newHeadNode);
+            newHeadNode = head;
+            head = temp;
+            changeLen--;
+        }
+        modifyListNode.setNext(head);
+        if (preNode != null) {
+            preNode.setNext(newHeadNode);
+        }else {
+            res = newHeadNode;
+        }
+        return res;
     }
 }
