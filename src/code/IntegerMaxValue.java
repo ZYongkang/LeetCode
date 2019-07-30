@@ -2,7 +2,7 @@ package code;
 
 /**
  * @author zhangyongkang@artspring.com.cn
- * @desc
+ * @desc Integer的最大数字
  * @time 2019-06-04 10:10
  */
 public class IntegerMaxValue {
