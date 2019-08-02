@@ -9,7 +9,7 @@ public class RomanToInt {
 
     public static void main(String[] args) {
         RomanToInt romanToInt = new RomanToInt();
-        String s = "III";
+        String s = "VI";
         int num = romanToInt.romanToInt(s);
         System.out.println(num);
     }
