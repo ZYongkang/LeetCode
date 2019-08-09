@@ -8,9 +8,9 @@ package code;
 public class LongestCommonPrefix {
 
     public static void main(String[] args) {
-        String[] strs = {"adsf", "addsf", "addds"};
+        String[] strs = {"flower","flow","flight"};
         LongestCommonPrefix longestCommonPrefix = new LongestCommonPrefix();
-        String str = longestCommonPrefix.longestCommonPrefix(strs);
+        String str = longestCommonPrefix.longestCommonPreFix(strs);
         System.out.println(str);
     }
 
@@ -23,5 +23,24 @@ public class LongestCommonPrefix {
                 if (prefix.isEmpty()) return "";
             }
         return prefix;
+    }
+
+    private String longestCommonPreFix(String[] strs) {
+        if (strs == null || strs.length <= 1) {
+            return "";
+        }
+        String res = strs[0];
+        int len = res.length();
+        for (int i = 0; i < len; i++) {
+            int j = 1;
+            while (j < strs.length) {
+                if (!strs[j].startsWith(res)) {
+                    res = res.substring(0, res.length() - 1);
+                    break;
+                }
+                j++;
+            }
+        }
+        return res;
     }
 }
