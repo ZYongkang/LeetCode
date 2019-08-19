@@ -12,7 +12,7 @@ public class ListNode implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int num;
+    private Integer num;
     private ListNode next;
 
     public ListNode(int num) {
@@ -24,11 +24,11 @@ public class ListNode implements Serializable {
         this.next = next;
     }
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 

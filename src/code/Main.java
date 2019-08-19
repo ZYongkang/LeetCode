@@ -1,46 +1,24 @@
 package code;
 
 import model.ListNode;
+import util.ListNodeUtils;
 
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Main main = new Main();
         ListNode head = new ListNode(0);
         int size = 2;
-        main.createListNode(head, head.getNum(), size);
+        ListNodeUtils.createListNode(head, head.getNum(), size);
         System.out.println("反转前：");
         System.out.println(head);
-//        ListNode listNode = main.reverseList(head);
-        ListNode listNode2 = main.reverseBetween(head, 2, 5, size);
-//        System.out.println("1反转后：");
-//        if (listNode != null) {
-//            System.out.println(listNode);
-//        }
-        System.out.println("2反转后：");
+        ListNode listNode2 = ListNodeUtils.reverseBetween(head, 2, 5, size);
+        System.out.println("反转后：");
         if (listNode2 != null) {
             System.out.println(listNode2);
         }
 
-    }
-
-    public void createListNode(ListNode head, int num , int size) {
-        if (size < 0) {
-            return;
-        }
-        size = size - 2;
-        initListNode(head, ++num, size);
-    }
-
-    public void initListNode(ListNode head, int num , int size) {
-        if (size < 0) {
-            return;
-        }
-        ListNode node = new ListNode(num);
-        head.setNext(node);
-        initListNode(node, ++num , --size);
     }
 
     public String getHint(String secret, String guess) {
@@ -96,47 +74,6 @@ public class Main {
             }
             if (resList.size() >= res) res = resList.size();
             resList.clear();
-        }
-        return res;
-    }
-
-    public ListNode reverseList(ListNode head){
-        ListNode prev = null;
-        ListNode curr = head;
-        while (curr != null) {
-            ListNode temp = curr.getNext();
-            curr.setNext(prev);
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
-    }
-
-    public ListNode reverseBetween(ListNode head, int m, int n, int size) {
-        if (m < 1 || m >= n || n > size) {
-            return head;
-        }
-        int changeLen = n - m + 1;
-        ListNode preNode = null;
-        ListNode res = head;
-        while (head != null && --m > 0) {
-            preNode = head;
-            head = head.getNext();
-        }
-        ListNode modifyListNode = head;
-        ListNode newHeadNode = null;
-        while (head != null && changeLen > 0) {
-            ListNode temp = head.getNext();
-            head.setNext(newHeadNode);
-            newHeadNode = head;
-            head = temp;
-            changeLen--;
-        }
-        modifyListNode.setNext(head);
-        if (preNode != null) {
-            preNode.setNext(newHeadNode);
-        }else {
-            res = newHeadNode;
         }
         return res;
     }
